@@ -3,3 +3,29 @@
   padding: 10px;
   border-bottom: 2px solid #ff69b4; /* розовая граница снизу */
 }
+
+a::after {
+  display: block;
+  content: "";
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg,#ff69b4,#00ff7f);
+  transition: .3s;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+.header-return {
+  font-size: 25px;
+}
+
+.header-search {
+  width: 35%;
+}
+
+.header-interf img{
+  width: 46px;
+  height: 46px;
+}
