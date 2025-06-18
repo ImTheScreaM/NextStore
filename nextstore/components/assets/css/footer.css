@@ -1,0 +1,7 @@
+.footer_container {
+  background-color: #222; /* темный фон футера */
+  padding: 20px;
+  border-top: 2px solid #ff69b4; /* розовая граница сверху */
+  text-align: center;
+  font-size:14px;
+}

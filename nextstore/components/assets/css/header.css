@@ -1,0 +1,5 @@
+.header_container {
+  background-color: #222; /* темный фон для шапки */
+  padding: 10px;
+  border-bottom: 2px solid #ff69b4; /* розовая граница снизу */
+}
