@@ -22,10 +22,10 @@ a:hover::after {
 }
 
 .header-search {
-  width: 35%;
+  width: 350px;
 }
 
-.header-interf img{
+.header-interface img{
   width: 46px;
   height: 46px;
 }
