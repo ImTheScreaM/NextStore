@@ -4,11 +4,6 @@ class MainPage {
 	USER_PAGE = '/user'
 	LOGIN = '/login'
 	REGISTER = '/register'
-	
-
-	GET_ID(id:string) {
-		return (`${id}`)
-	}
 }
 
 

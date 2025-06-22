@@ -4,7 +4,6 @@ import '@/components/assets/css/main.css'
 import { ProductCard } from '@/components/product_ui/productCard'
 
 import { API_PRODUCT } from '@/core/api/api'
-import { useBusket } from '@/core/store/busket'
 import { Cart } from '@/types/types'
 
 
