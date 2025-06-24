@@ -7,15 +7,19 @@ import '@/components/assets/css/section.css'
 import { API_PRODUCT } from '@/core/api/api'
 import { MAIN } from '@/core/config/main.page.config'
 import { useDebounce } from '@/core/hooks/useDebounce'
+import { ProductCard } from '../product_ui/productCard'
+import { Cart } from '@/types/types' 
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { ProductCard } from '../product_ui/productCard'
+import {JSX, SetStateAction, useEffect, useState } from 'react'
+
 
 export default function Header() {
-	const [search, setSearch] = useState()
-	const [result, setResult] = useState([])
-	const [products, setProducts] = useState()
+	const [search, setSearch] = useState<string>()
+	const [result, setResult] = useState<Cart[]>([])
+	const [products, setProducts] = useState<Cart[]>()
+
+	const debouncedSearch = useDebounce(search, 500)
 
 	useEffect(() => {
 		const searchFetch = () => {
@@ -33,14 +37,14 @@ export default function Header() {
 		searchFetch()
 	}, [])
 
-	const debouncedSearch = useDebounce(search, 500)
+	
 
 	useEffect(() => {
 		if (search) {
-			const lowerSearchTerm = debouncedSearch.toLowerCase()
-			const filteredProducts = products?.filter((product: { title: string }) =>
+			const lowerSearchTerm = debouncedSearch?.toLowerCase() ?? ''
+			const filteredProducts:Cart[] = (products?.filter((product: { title: string }) =>
 				product.title.toLowerCase().includes(lowerSearchTerm)
-			)
+			)) ?? []
 			setResult(filteredProducts)
 		} else {
 			setResult([])
@@ -59,13 +63,12 @@ export default function Header() {
 						type='text'
 						placeholder='Search...'
 						value={search}
-						
 						onChange={e => setSearch(e.target.value)}
 					/>
 
 					{result.length > 0 ? (
 						<div className='search-result gap-4 flex absolute top-20 '>
-							{result.map(i => (
+							{result.map((i:Cart) => (
 								<ProductCard key={i.id} {...i} />
 							))}
 						</div>
@@ -76,7 +79,7 @@ export default function Header() {
 			</article>
 
 			<div className='header-interface flex flex-row gap-12'>
-				<Link href={MAIN.HOME}>
+				<Link href={MAIN.USER_PAGE}>
 					<img src='https://img.icons8.com/parakeet-line/48/gender-neutral-user.png' />
 				</Link>
 				<Link href={MAIN.BUSKET}>

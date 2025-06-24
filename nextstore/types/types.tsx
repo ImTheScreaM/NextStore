@@ -7,7 +7,9 @@ export interface Cart {
 }
 
 export interface CartState {
+	addBusketQuan: any
 	removeBusket: any
-	busket:Cart[],
+	busket:Cart[] | Cart,
 	addProduct:(product:Cart) => void
 }
+

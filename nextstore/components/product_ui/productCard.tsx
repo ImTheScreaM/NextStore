@@ -1,21 +1,17 @@
 'use client'
+
 import '@/components/assets/css/main.css'
+
 import { useBusket } from '@/core/store/busket'
+import { Cart } from '@/types/types'
+
 import Image from 'next/image'
 
-interface IProductCard {
-	id: number
-	price: number
-	title: string
-	image?: string
-}
-
-export const ProductCard = ({ id, price, title, image }: IProductCard) => {
+export const ProductCard = ({ id, price, title, image }: Cart) => {
 	const addProduct = useBusket(state => state.addProduct)
 
 	const addToBusket = () => {
 		const props = { id, price, title, image }
-
 		addProduct(props)
 	}
 
