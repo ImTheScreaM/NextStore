@@ -9,75 +9,66 @@ export const useBusket = create<CartState>()(
 		(set, get) => ({
 			busket: [],
 			addProduct: (product: Cart) => {
-				const busket = get()
-				if (Array.isArray(busket)) {
-					const getIdProduct = busket.find(
-						(elem: { id: number }) => elem.id === product.id
-					)
+				const getIdProduct = get().busket.find(
+					(elem: { id: number }) => elem.id === product.id
+				)
 
-					if (!getIdProduct) {
-						toast.success('Product add')
-					} else {
-						toast.success('Product already add')
-					}
-					set({
-						busket: getIdProduct
-							? get().busket
-							: [
-									...busket,
-									{
-										id: product.id,
-										title: product.title,
-										price: product.price,
-										image: product.image,
-										quantity: 1,
-									},
-							  ],
-					})
+				if (!getIdProduct) {
+					toast.success('Product add')
+				} else {
+					toast.success('Product already add')
 				}
+				
+				set({
+					busket: getIdProduct
+						? get().busket
+						: [
+								...get().busket,
+								{
+									id: product.id,
+									title: product.title,
+									price: product.price,
+									image: product.image,
+									quantity: 1,
+								},
+						  ],
+				})
 			},
 			removeBusket: (product: Cart) => {
-				const busket = get()
+				const item = get().busket.find(
+					(item: { id: number }) => item.id == product.id
+				)
 
-				if (Array.isArray(busket)) {
-					const item = busket.find(
-						(item: { id: number }) => item.id == product.id
-					)
-
-					if (!item) {
-						return
-					}
-					if (item && item.quantity == 1) {
-						set({
-							busket: busket.filter(
-								(item: { id: number }) => item.id !== product.id
-							),
-						})
-						toast.success('Product deleted')
-					}
-
-					item.quantity -= 1
-
-					set({
-						busket: [...busket],
-					})
+				if (!item) {
+					return
 				}
+				if (item && item.quantity == 1) {
+					set({
+						busket: get().busket.filter(
+							(item: { id: number }) => item.id !== product.id
+						),
+					})
+					toast.success('Product deleted')
+				}
+
+				item.quantity -= 1
+
+				set({
+					busket: [...get().busket],
+				})
 			},
 
 			addBusketQuan: (product: Cart) => {
-				const busket = get()
-				if (Array.isArray(busket)) {
-					const item = busket.find(
-						(item: { id: number }) => item.id == product.id
-					)
-					if (!item) {
-						return toast.error('No found item')
-					}
-					item.quantity += 1
-					set({
-						busket: [...busket],
-					})
+				const item = get().busket.find(
+					(item: { id: number }) => item.id == product.id
+				)
+				if (!item) {
+					return toast.error('No found item')
 				}
+				item.quantity += 1
+				set({
+					busket: [...get().busket],
+				})
 			},
 		}),
 		{

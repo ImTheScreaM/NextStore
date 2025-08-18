@@ -1,1 +1,2 @@
-export const API_PRODUCT = 'https://fakestoreapi.in/api/products'
+export const API_PRODUCT = `https://fakestoreapi.in/api/products`
+

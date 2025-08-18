@@ -1,3 +1,39 @@
+.busket-container {
+	justify-self: center;
+}
+
+.container {
+	display: flex;
+	justify-content: space-evenly;
+	gap: 20px;
+}
+
+.busket {
+	display: flex;
+	flex-direction: column;
+	gap: 13px;
+	padding: 10px;
+}
+
 .busket-items {
 	background-color: #212121;
+	border-radius: 15px;
+	padding: 15px 10px;
+}
+
+.busket-info {
+	display: flex;
+	justify-content: space-evenly;
+	padding: 4px;
+	gap: 10px;
+}
+
+.busket-title {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 750px;
+}
+
+.busket-img {
+	min-width: 300px;
 }
