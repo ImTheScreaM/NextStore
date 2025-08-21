@@ -9,7 +9,7 @@ import Link from 'next/link'
 import {useBusketStore} from "@/components/shared/modals/busketStore";
 
 export const ProductCard = ({ id, price, title, image,quantity}: Cart) => {
-	const {addProduct} = useBusketStore()
+	const {addProduct} = useBusketStore({})
 
 	const addToBusket = () => {
 		const props = {id, price, title, image, quantity}

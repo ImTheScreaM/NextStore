@@ -8,8 +8,9 @@ import useApiProductClient from "@/components/shared/modals/api-product_client";
 
 
 export default function ProductClient({params}:{params: Promise<{ product_id: number }>}) {
-	const {addProduct} = useBusketStore()
+
 	const {products,loading,error} = useApiProductClient({params})
+	const { addToBusket } = useBusketStore({products: products})
 
 	if (loading) {
 		return 'loading'
@@ -18,6 +19,8 @@ export default function ProductClient({params}:{params: Promise<{ product_id: nu
 	if (error) {
 		return error
 	}
+
+
 
 	return (
 		<div className="product-client grid justify-center gap-20">
@@ -38,7 +41,7 @@ export default function ProductClient({params}:{params: Promise<{ product_id: nu
 								<p style={{fontSize:'22px'}}>{products!.price * 74} ₽.</p>
 								<p style={{fontSize:'15px'}}>от {(((products!.price*74) / 10).toFixed(0))} ₽/ мес.</p>
 							</div>
-							<button onClick={() => addProduct(products)}>В корнизу</button>
+							<button onClick={addToBusket}>В корнизу</button>
 						</div>
 						<div className='product-client__color'>
 							<h3>Цвета</h3>

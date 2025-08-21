@@ -19,6 +19,7 @@ export default async function MainLayout({
 	const {result} = categoriesFind({categories})
 
 
+
 	return (
 		<div className='shop layout'>
 			<div className='nextstore_categories'>

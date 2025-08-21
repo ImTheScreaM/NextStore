@@ -17,6 +17,7 @@ export async function generateStaticParams() {
 		return
 	}
 
+
 	return data?.products.map((products:Cart) => ({
 		product_id: products.id.toString(),
 	}))

@@ -25,7 +25,7 @@ const styleSize = {
 
 export default function Busket() {
 
-	const {busket, remove, addBusketQuan, totalPrice} = useBusketStore()
+	const {busket, remove, addBusketQuan, totalPrice} = useBusketStore({})
 
 	return (
 		<div className='busket-container flex flex-row'>
