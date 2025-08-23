@@ -6,7 +6,7 @@ import {useFormStatus} from "react-dom";
 
 export default function SignIn() {
     const [state,loginAction] = useActionState(login,undefined);
-    console.log('STATE IN SIGN IN',state)
+    console.log(state)
     return (
         <div className='p-8'>
             <form action={loginAction} method='POST' className='flex flex-col items-center gap-12'>

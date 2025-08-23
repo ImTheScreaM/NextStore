@@ -14,10 +14,21 @@ const loginShema = z.object({
         .trim()
 })
 
-export async function registretion(formData: FormData) {
+export async function registration(formData: FormData) {
+
     const email = formData.get("email") as string
     const password = formData.get("password") as string
     const name = formData.get("name") as string
+
+    const user = await prisma.user.findUnique({where: {email:email}})
+
+    if (user) {
+        return console.log('user already exists')
+    }
+
+    if (password.length < 8) {
+        return console.log('Password must be at least 8 characters long')
+    }
 
     await prisma.user.create({
         data: {
@@ -31,6 +42,7 @@ export async function registretion(formData: FormData) {
 
 
 export async function login(prevState:any,formDate:FormData) {
+
     const result = loginShema.safeParse(Object.fromEntries(formDate))
     const {email, password} = result.data
 
@@ -40,9 +52,6 @@ export async function login(prevState:any,formDate:FormData) {
         }
     })
 
-
-    console.log(user)
-
     if(!user || user.password !== password) {
         return {
             errors:{
@@ -50,12 +59,12 @@ export async function login(prevState:any,formDate:FormData) {
             }
         }
     } else {
-        await createSession(user!.id)
+        await createSession(user.id)
         redirect('/')
     }
 }
 
 export async function logout() {
-    deleteSession()
+    await deleteSession()
     redirect('/')
 }

@@ -1,13 +1,13 @@
 'use client'
 
-import {registretion} from "@/app/lib/action";
+import {registration} from "@/app/lib/action";
 
 export default function SignUp() {
 
 
     return (
         <div className='p-8'>
-            <form action={registretion} method='POST' className='flex flex-col items-center gap-12'>
+            <form action={registration} method='POST' className='flex flex-col items-center gap-12'>
                 <h2 className="text-3xl text-center mb-6">Создать аккаунт</h2>
                 <div className='flex flex-col gap-5 m-auto border p-10 rounded-lg max-w-sm'>
                     <div>
