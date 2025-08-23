@@ -1,12 +1,18 @@
-export default async function SignUp() {
+'use client'
+
+import {registretion} from "@/app/lib/action";
+
+export default function SignUp() {
+
+
     return (
         <div className='p-8'>
-            <form action='/login' method='POST' className='flex flex-col items-center gap-12'>
+            <form action={registretion} method='POST' className='flex flex-col items-center gap-12'>
                 <h2 className="text-3xl text-center mb-6">Создать аккаунт</h2>
                 <div className='flex flex-col gap-5 m-auto border p-10 rounded-lg max-w-sm'>
                     <div>
                         <label>Имя пользователя</label>
-                        <input type="text" required={true} name='username' placeholder='Login...'/>
+                        <input type="text" required={true} name='name' placeholder='Login...'/>
                     </div>
                     <div>
                         <label>Почта</label>

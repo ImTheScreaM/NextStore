@@ -1,0 +1,40 @@
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  email String @unique
+  password String
+  name String
+  role Role @default(USER)
+  busket Busket[]
+}
+
+model Busket {
+  id Int @id @default(autoincrement())
+  brand String
+  category String
+  color String
+  description String
+  discount Int
+  image String
+  model String
+  onSale Boolean
+  price Int
+  title String
+  User User[]
+}
+
+
+
+enum Role {
+  ADMIN
+  USER
+}
